@@ -5,6 +5,8 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent, Update
 from telegram.constants import ParseMode
 from telegram.ext import Application, CommandHandler, ContextTypes, InlineQueryHandler
 import config
+import ipinfo
+import ipsearch
 
 # Enable logging
 
@@ -54,44 +56,16 @@ async def inline_query(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
 
         return
 
-
+    revc=ipsearch.do_req(query),
     results = [
 
         InlineQueryResultArticle(
 
             id=str(uuid4()),
 
-            title="Caps",
-
-            input_message_content=InputTextMessageContent(query.upper()),
-
-        ),
-
-        InlineQueryResultArticle(
-
-            id=str(uuid4()),
-
-            title="Bold",
-
-            input_message_content=InputTextMessageContent(
-
-                f"<b>{escape(query)}</b>", parse_mode=ParseMode.HTML
-
-            ),
-
-        ),
-
-        InlineQueryResultArticle(
-
-            id=str(uuid4()),
-
-            title="Italic",
-
-            input_message_content=InputTextMessageContent(
-
-                f"<i>{escape(query)}</i>", parse_mode=ParseMode.HTML
-
-            ),
+            title="IPSearch",
+            
+            input_message_content=InputTextMessageContent(str(revc)),
 
         ),
 
