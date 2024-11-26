@@ -4,5 +4,6 @@ handler = ipinfo.getHandler(access_token)
 ip_address = '1.1.1.1'
 def do_req(ip_address):
      details = handler.getDetails(ip_address)
+     res="IP地址" + details.ip + "\n城市" + details.city + "\nASN Org:" + details.org + "\n时区" + details.timezone + "\nHostname" + details.hostname
 
-     return details.ip, details.city, details.org, details.timezone, details.hostname
+     return res
